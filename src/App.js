@@ -9,7 +9,7 @@ function App() {
   const handleChange = (event) => {
     setNewTask(event.target.value);
   };
-
+  
   const addTask = () => {
     const task = {
       id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
