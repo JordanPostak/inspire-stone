@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+.appHeader{
+  background-image: url("images/BlackStone.jpg");
+  background-position: bottom;
+  background-size:100%;
+}
+
 .App-logo {
   position: relative;
   z-index: 1;
@@ -55,5 +61,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: black;
+}
+
+.list {
+  background-image: url("images/stonebackground.png");
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
