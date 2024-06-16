@@ -1,0 +1,37 @@
+.chapter-title {
+    text-align: center;
+  }
+  
+  .ql-toolbar .ql-formats .ql-font-size .ql-picker-options .ql-picker-item {
+    content: attr("data-value");
+  }
+  
+  .ql-toolbar {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: white;
+    font-weight: bold;
+    border: 1px solid var(--ivory);
+  }
+  
+  .ql-toolbar * {
+    font-weight: bold;
+  }
+  
+  .ql-clipboard{
+    display:none;
+    visibility:hidden;
+    height:0px;
+  }
+  
+  .ql-editor{
+    height:100%;
+    font-size:1rem;
+  }
+  .ql-editor * {
+    color:black;
+  }
+  
+  .ql-toolbar * * {
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
