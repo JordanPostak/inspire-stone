@@ -17,6 +17,7 @@ body {
   font-family: "Stalemate", sans-serif;
   overflow: hidden;
 }
+
 main {
   display: flex;
   flex-direction: row;
@@ -25,12 +26,26 @@ main {
 .candle {
   background-image: url("/images/candle.png");
   background-size: cover;
-  height: 200px;
+  height: 280px;
   position: absolute;
   box-shadow: none;
   background-color: transparent;
   top: 0;
   left: 150px;
+  animation: pulsate 1s infinite;
+  z-index: 5;
+  animation: flicker .15s infinite;
+}
+@keyframes flicker {
+  0% {
+    filter: contrast(150%);
+  }
+  50% {
+    filter: contrast(80%);
+  }
+  100% {
+    filter: contrast(150%);
+  }
 }
 .paper {
   background-image: url("/images/desk-top-feather-pen.jpg");
@@ -39,9 +54,31 @@ main {
   width: 450px;
   height: 320px;
   transform: rotate(-35deg);
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.445);
   z-index: -1;
   overflow: -moz-hidden-unscrollable;
+  /* animation: face-flicker .15s infinite; */
+}
+.paper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.671); /* Initial flicker shadow */
+  animation: paper-flicker .15s infinite alternate;
+  pointer-events: none; /* Make sure the pseudo-element does not interfere with click events */
+}
+@keyframes paper-flicker {
+  0% {
+      opacity: 0.75;
+  }
+  50% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0.75;
+  }
 }
 .book {
   margin-left: 30%;
@@ -56,9 +93,29 @@ div {
   height: 400px;
   text-align: center;
 }
-.cover, .login, .register {
-  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.445);
+.cover::before, .login::before, .register::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.445); /* Initial flicker shadow */
+  animation: item-flicker .15s infinite alternate;
+  pointer-events: none; /* Make sure the pseudo-element does not interfere with click events */
 }
+@keyframes item-flicker {
+  0% {
+      opacity: 0.9;
+  }
+  50% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0.9;
+  }
+}
+
 .login,
 .register {
   display: flex;
@@ -69,6 +126,7 @@ div {
   text-align: center;
   align-items: center;
   color: rgba(72, 52, 37, 0.686);
+  animation: face-flicker .15s infinite;
 }
 .register {
   border-bottom: solid 5px rgb(72, 52, 37);
@@ -94,6 +152,7 @@ div {
 .register {
   z-index: 0;
 }
+
 .cover {
   transform-origin: left center;
   transition:
@@ -103,6 +162,19 @@ div {
   background-image: url("/images/cover.jpg");
   background-size: 100% 100%;
   border-radius: 3px;
+  filter: contrast(120%);
+  animation: face-flicker .15s infinite;
+}
+@keyframes face-flicker {
+  0% {
+    filter: contrast(120%);
+  }
+  50% {
+    filter: contrast(125%);
+  }
+  100% {
+    filter: contrast(120%);
+  }
 }
 .cover h1,
 .cover h2,
@@ -237,7 +309,18 @@ header {
   rotate: 10deg;
   background-position: left bottom;
   background-size: 160% 170%;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.445);
+  animation: face-flicker .15s infinite;
+}
+header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.862); /* Initial flicker shadow */
+  animation: paper-flicker  .15s infinite alternate;
+  pointer-events: none; /* Make sure the pseudo-element does not interfere with click events */
 }
 
 p.userNotFound {

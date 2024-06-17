@@ -1,62 +1,5 @@
 import { guid } from "./uid.js";
 
-// Function to open or create the database
-function openDatabase() {
-  return new Promise((resolve, reject) => {
-    const DBOpenReq = indexedDB.open("FableForger", 2);
-
-    DBOpenReq.addEventListener("error", (err) => {
-      console.warn(err);
-      reject("Error opening database");
-    });
-
-    DBOpenReq.addEventListener("success", (ev) => {
-      const db = ev.target.result;
-      console.log("Database opened:", db);
-
-      // Log object store names
-      console.log("Object store names:", db.objectStoreNames);
-
-      resolve(db);
-    });
-
-    DBOpenReq.addEventListener("upgradeneeded", (ev) => {
-      const db = ev.target.result;
-      console.log("Database upgrade needed:", db);
-
-      // Log existing object store names
-      console.log("Existing object store names:", db.objectStoreNames);
-
-      // Handle database upgrade if necessary
-      if (!db.objectStoreNames.contains("users")) {
-        console.log("Creating users object store");
-        const objectStore = db.createObjectStore("users", {
-          keyPath: "userId",
-        });
-        objectStore.createIndex("username", "username", { unique: true });
-      }
-      // Create "projects" object store if it doesn't exist
-      if (!db.objectStoreNames.contains("projects")) {
-        console.log("Creating projects object store");
-        const projectsObjectStore = db.createObjectStore("projects", {
-          keyPath: "id",
-        });
-        // Add any additional configuration for the "projects" object store
-      }
-
-      // Create "userProjects" object store if it doesn't exist
-      if (!db.objectStoreNames.contains("userProjects")) {
-        console.log("Creating userProjects object store");
-        const userProjectsObjectStore = db.createObjectStore("userProjects", {
-          keyPath: "relationshipId",
-          autoIncrement: true,
-        });
-        // Add any additional configuration for the "userProjects" object store
-      }
-    });
-  });
-}
-
 // Function to hash a password
 async function hashPassword(password) {
   const encoder = new TextEncoder();
@@ -135,161 +78,120 @@ function showWelcomeMessage(element, message, duration = 1000) {
   requestAnimationFrame(appendNextCharacter);
 }
 
-// Function to handle form submission for login
-async function handleLoginFormSubmission(event) {
-  event.preventDefault();
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  openDatabase().then(async (db) => {
-    const hashedPassword = await hashPassword(password);
-    loginUser(db, username, hashedPassword);
-  });
-}
-
-// Function to register a user
-async function registerUser(db, username, password) {
-  const hashedPassword = await hashPassword(password);
-
-  const transaction = db.transaction(["users"], "readwrite");
-  transaction.oncomplete = () => {
-    console.log("Registration successful!");
-  };
-  transaction.onerror = (error) => {
-    console.error("Error registering user:", error);
-  };
-
-  const usersStore = transaction.objectStore("users");
-
-  // Check if the username already exists
-  const usernameIndex = usersStore.index("username");
-  const usernameCheck = usernameIndex.get(username);
-
-  usernameCheck.onsuccess = (event) => {
-    const existingUser = event.target.result;
-    if (existingUser) {
-      console.error("Username already exists. Please choose a different one.");
-    } else {
-      // If username doesn't exist, proceed with registration
-      const newUser = {
-        userId: guid(),
-        username: username,
-        password: hashedPassword, // Use the hashed password
-      };
-
-      const addUserRequest = usersStore.add(newUser);
-
-      addUserRequest.onsuccess = () => {
-        console.log("User registered successfully:", newUser);
-
-        // Display welcome message with the new username
-        showWelcomeMessage(welcomeText, `${username}`);
-        // Wait for a couple of seconds
-        setTimeout(() => {
-          // set WelcomeText back
-          showWelcomeMessage(welcomeText, ` registered `);
-          // Add logic to clear the registration fields if needed
-        }, 1000);
-        // Wait for a couple of seconds
-        setTimeout(() => {
-          // set WelcomeText back
-          showWelcomeMessage(welcomeText, `successfully`);
-          // Add logic to clear the registration fields if needed
-        }, 2500);
-
-        // Wait for a couple of seconds
-        setTimeout(() => {
-          // set WelcomeText back
-          showWelcomeMessage(welcomeText, ` W  e  l  c  o  m  e `);
-          // Add logic to clear the registration fields if needed
-
-          // Flip the page
-          flipRegistration();
-        }, 4000);
-      };
-
-      addUserRequest.onerror = (error) => {
-        console.error("Error adding user:", error);
-      };
-    }
-  };
-}
-
-// Function to log in a user
-function loginUser(db, username, password) {
-  const transaction = db.transaction(["users"], "readonly");
-  transaction.oncomplete = () => {
-    console.log("Login successful!");
-  };
-  transaction.onerror = (error) => {
-    console.error("Error logging in:", error);
-  };
-
-  const usersStore = transaction.objectStore("users");
-
-  console.log("Attempting to log in with username:", username);
-
-  // Retrieve the user by username to get the userId
-  const usernameIndex = usersStore.index("username");
-  const getUserRequest = usernameIndex.get(username);
-
-  getUserRequest.onsuccess = (event) => {
-    const user = event.target.result;
-
-    console.log("User retrieved from the database:", user);
-
-    if (user) {
-      // Now that we have the userId, retrieve the user by userId
-      const userId = user.userId;
-      const userByKeyRequest = usersStore.get(userId);
-
-      userByKeyRequest.onsuccess = (event) => {
-        const userByKey = event.target.result;
-
-        if (userByKey && userByKey.password === password) {
-          console.log("User logged in successfully:", userByKey);
-
-          // Set a session variable or use local storage to indicate the user is logged in
-          sessionStorage.setItem("loggedIn", true);
-          sessionStorage.setItem("userId", userByKey.userId);
-          // Update the key to "username" instead of "userByKey.username"
-          sessionStorage.setItem("username", userByKey.username);
-          console.log("session storage username is:", userByKey.username);
-
-          window.location.href = "./editor/index.html";
-        } else {
-          console.error("Invalid username or password.");
-        }
-      };
-    } else {
-      let userNotFound = document.createElement("p");
-      userNotFound.textContent =
-        "Please check your username and password, and then try again!";
-      let paper = document.querySelector(".paper");
-      userNotFound.className = "userNotFound";
-      paper.append(userNotFound);
-      console.warn(
-        "User not found for the provided username. Please register or check your username and password and then try again!"
-      );
-    }
-  };
-}
-
 // Function to handle form submission for registration
 function handleRegisterFormSubmission(event) {
   event.preventDefault();
-  const username = document.getElementById("newUsername").value;
-  const password = document.getElementById("newPassword").value;
+  const username = document.getElementById('newUsername').value;
+  const password = document.getElementById('newPassword').value;
 
-  openDatabase().then((db) => {
-    registerUser(db, username, password);
-  });
+  // Call registerUser function with username and password
+  registerUser(username, password);
 }
 
-// Event listeners for form submissions
-document
-  .getElementById("registerForm")
-  .addEventListener("submit", handleRegisterFormSubmission);
-document
-  .getElementById("loginForm")
-  .addEventListener("submit", handleLoginFormSubmission);
+async function registerUser(username, password, firstName, lastName, email) {
+  const hashedPassword = await hashPassword(password);
+
+  // Generate a random user_id (assuming you have a function to generate GUIDs)
+  const userId = guid(); // Assuming guid() generates a unique identifier
+
+  const registrationData = {
+    user_id: userId,
+    username: username,
+    first_name: firstName,
+    last_name: lastName,
+    email: email,
+    password: hashedPassword,
+  };
+
+  try {
+    const response = await fetch('https://seerstoneapi.onrender.com/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(registrationData),
+    });
+
+    if (!response.ok) {
+      throw new Error('Error registering user');
+    }
+
+    const responseData = await response.json();
+    console.log('User registered successfully:', responseData);
+
+    // Handle successful registration, e.g., display welcome message
+    showWelcomeMessage(welcomeText, `${username}`);
+
+    setTimeout(() => {
+      showWelcomeMessage(welcomeText, ` registered `);
+    }, 1000);
+
+    setTimeout(() => {
+      showWelcomeMessage(welcomeText, `successfully`);
+    }, 2500);
+
+    setTimeout(() => {
+      showWelcomeMessage(welcomeText, ` W  e  l  c  o  m  e `);
+      flipRegistration();
+    }, 4000);
+
+  } catch (error) {
+    console.error('Error registering user:', error.message);
+    // Handle error, e.g., display error message to the user
+    alert('Error registering user. Please try again.');
+  }
+}
+
+// Function to log in a user using backend API
+async function loginUser(username, password) {
+  const loginData = {
+    username: username,
+    password: password,
+  };
+
+  try {
+    const response = await fetch('https://seerstoneapi.onrender.com/api/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginData),
+    });
+
+    if (!response.ok) {
+      throw new Error('Error logging in');
+    }
+
+    const user = await response.json();
+    console.log('User logged in successfully:', user);
+
+    // Set session storage or local storage for logged-in user details
+    sessionStorage.setItem('loggedIn', true);
+    sessionStorage.setItem('userId', user.user_id);
+    sessionStorage.setItem('username', user.username);
+    sessionStorage.setItem('firstName', user.first_name);
+    sessionStorage.setItem('lastName', user.last_name);
+    sessionStorage.setItem('email', user.email);
+
+    // Redirect or navigate to the editor page
+    window.location.href = './editor/index.html';
+
+  } catch (error) {
+    console.error('Error logging in:', error.message);
+    // Handle error, e.g., display error message to the user
+    alert('Invalid username or password. Please try again.');
+  }
+}
+
+// Function to handle form submission for login
+function handleLoginFormSubmission(event) {
+  event.preventDefault();
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  // Call loginUser function with username and password
+  loginUser(username, password);
+}
+
+// Event listener for login form submission
+document.getElementById('loginForm').addEventListener('submit', handleLoginFormSubmission);
