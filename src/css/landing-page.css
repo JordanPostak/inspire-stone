@@ -4,6 +4,40 @@
 *:after {
   box-sizing: border-box;
 }
+/* Basic styles for the button */
+.getUsersButton {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.getUsersButton:hover {
+  background-color: #45a049;
+}
+
+/* Container for the user list */
+.usersContainer {
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Styles for each user element */
+.usersContainer div {
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+#usersContainer div:nth-child(odd) {
+  background-color: #efefef;
+}
+
 body {
   background-image: url("/images/wooden-table.png");
   background-size: cover;
@@ -56,7 +90,7 @@ main {
   transform: rotate(-35deg);
   z-index: -1;
   overflow: -moz-hidden-unscrollable;
-  /* animation: face-flicker .15s infinite; */
+  animation: face-flicker .15s infinite;
 }
 .paper::after {
   content: "";
@@ -100,7 +134,7 @@ div {
   left: 0;
   width: 100%;
   height: 100%;
-  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.445); /* Initial flicker shadow */
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.748); /* Initial flicker shadow */
   animation: item-flicker .15s infinite alternate;
   pointer-events: none; /* Make sure the pseudo-element does not interfere with click events */
 }
@@ -206,15 +240,29 @@ div {
 .cover p {
   font-size: 2rem;
 }
+.paperMessage {
+  font-size: 2.2rem;
+  color: rgba(48, 31, 16, 0.675);
+  font-weight: bold;
+  margin-top: 120px;
+  margin-left: 80px;
+  width: 100%; /* Ensures the container takes full width */
+  text-align: left; /* Centers the text horizontally */
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Hides overflow text */
+}
+
 .login h2,
 .register h2 {
-  font-size: 2.4rem;
+  font-size: 1.6rem;
+  margin-bottom: 0px;
+  margin-left: -200px;
 }
 .login label,
 .register label {
   font-weight: bold;
   color: rgba(72, 52, 37, 0.686);
-  font-size: 1.8rem;
+  font-size: 1.2rem;
 }
 #loginForm input,
 #registerForm input {
@@ -224,9 +272,8 @@ div {
   border-bottom: 1px solid rgba(72, 52, 37, 0.686);
   outline: none;
   font-family: inherit;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   margin-top: -10px;
-  margin-bottom: 0px;
   font-weight: bold;
   color: rgba(72, 52, 37, 0.686);
   text-align: center;
@@ -234,14 +281,14 @@ div {
 #loginForm,
 #registerForm {
   width: 70%;
-  margin-top: -20px;
+  margin-top: -40px;
 }
 #loginForm button,
 #registerForm button {
   margin-top: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   font-family: inherit;
   background: none;
   border: solid 1px rgba(72, 52, 37, 0.686);
@@ -257,6 +304,7 @@ div {
   font-weight: bold;
 }
 .goRegister {
+  margin-top: -10px;
   position: relative;
   display: flex;
   flex-direction: row;
