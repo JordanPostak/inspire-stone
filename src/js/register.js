@@ -1,6 +1,5 @@
 // This is the src/js/register.js file
 
-import { guid, hashPassword } from "./uid.js";
 import { appendDelayedMessage, showWelcomeMessage, animateFeatherWriting} from "./writingAnimations.js";
 import { flipRegistration } from "./bookAnimations.js";
 
@@ -18,17 +17,15 @@ document.getElementById('registerForm').addEventListener('submit', async functio
 
 // Function to register a user via API
 async function registerUser(username, password, firstName, lastName, email) {
-  const hashedPassword = await hashPassword(password);
   const newUser = {
-    user_id: guid(), //generate a unique user ID
     username: username,
-    password: hashedPassword,
+    password: password,
     first_name: firstName,
     last_name: lastName,
     email: email
   };
   try {
-    const response = await fetch('https://seerstoneapi.onrender.com/users/', {
+    const response = await fetch('https://seerstoneapi.onrender.com/users/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

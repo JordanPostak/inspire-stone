@@ -21,6 +21,29 @@
   }
 
 
+   //Function to close book cover
+ function closeCover() {
+  const cover = document.getElementById("cover");
+  if (cover) {
+    // Rotate the cover element
+    cover.style.transform =
+      cover.style.transform === "rotateY(-180deg)"
+        ? "rotateY(0deg)"
+        : "rotateY(-180deg)";
+  }
+  // Set a timeout to hide children after 600 milliseconds (0.6 seconds)
+  setTimeout(() => {
+    // Get all children elements of cover
+    const children = cover.children;
+    // Loop through children and toggle their display property
+    for (let i = 0; i < children.length; i++) {
+      children[i].style.display =
+        children[i].style.display === "none" ? "flex" : "none";
+    }
+  }, 600);
+}
+
+
   // function to flip back to the login page from the register page
 function flipRegistration() {
     const login = document.getElementById("login");
@@ -73,10 +96,10 @@ function flipRegistration() {
       // Loop through children and toggle their display property
       for (let i = 0; i < children.length; i++) {
         children[i].style.display =
-          children[i].style.display === "none" ? "block" : "none";
+          children[i].style.display === "none" ? "flex" : "none";
       }
     }, 600);
   }
   
 
-  export { flipCover, flipLogin, flipRegistration };
+  export { flipCover, flipLogin, flipRegistration, closeCover };

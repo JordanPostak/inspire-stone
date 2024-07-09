@@ -1,11 +1,17 @@
 // landing-page.js
 
 import { flipCover, flipLogin, flipRegistration } from "./bookAnimations.js";
+import { fadeIn } from "./stoneAnimations.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const beginButton = document.getElementById("begin");
     const smallButton = document.querySelector(".smallbutton");
     const backButton = document.querySelector(".backbutton");
+    const welcomeText = document.getElementById("welcomeText");
+
+    if (welcomeText) {
+        fadeIn(welcomeText); // Fade in welcome text element on page load
+    }
   
     if (beginButton) {
       // Attach a click event listener to the Begin button
@@ -20,21 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (backButton) {
       // Attach a click event listener to the Register button
       backButton.addEventListener("pointerdown", flipRegistration);
-    }
-  });
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const welcomeText = document.getElementById("welcomeText");
-  
-    if (welcomeText) {
-      const textContent = welcomeText.textContent;
-      welcomeText.textContent = "";
-  
-      for (let i = 0; i < textContent.length; i++) {
-        const span = document.createElement("span");
-        span.textContent = textContent[i];
-        welcomeText.appendChild(span);
-      }
     }
   });
   

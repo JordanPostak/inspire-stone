@@ -28,7 +28,6 @@ function showWelcomeMessage(element, message, duration = 1000) {
         setTimeout(() => {
           requestAnimationFrame(appendNextCharacter);
         }, duration / message.length);
-      } else {e
       }
     }
     // Start the animation
