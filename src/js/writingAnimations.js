@@ -6,7 +6,7 @@ function appendDelayedMessage(element, message, delay) {
     return new Promise(resolve => {
       setTimeout(() => {
         element.innerHTML += `<br>`;
-        showWelcomeMessage(element, message);
+        showPaperMessage(element, message);
         resolve();
       }, delay);
     });
@@ -14,7 +14,7 @@ function appendDelayedMessage(element, message, delay) {
   
 
 // Function to show welcome message with slow writing effect
-function showWelcomeMessage(element, message, duration = 1000) {
+function showPaperMessage(element, message, duration = 400) {
     let index = 0;
     function appendNextCharacter() {
       const span = document.createElement("span");
@@ -91,89 +91,56 @@ function laydownfeather() {
     // Re-enable animation on feathershadow
     setTimeout(() => {
         featherShadow.style.animation = 'item-flicker .15s infinite alternate';
-    }, 500);
+    }, 600);
 }
 
+// function to move feather down to next line
+function moveFeathertoNextLine(topPosition) {
+    const feather = document.querySelector('.feather');
+    feather.style.top = `${topPosition}px`;
+    feather.style.transition = 'transform .5s ease, left .5s linear, top .5s linear';
+    feather.style.transform = 'rotateY(30deg) scaleX(0.5) scale(1.5)';
+    feather.style.left = '-20px';
+}
 
-//Function to animate featherpen writing the paperMessage
-function animateFeatherWriting() {
+// Function to animate featherpen writing the paperMessage
+function animateFeatherWriting(speed, distance, topPosition) {
     const feather = document.querySelector('.feather');
     // Start the writing animation sequence
+    featherWrite(distance);
     setTimeout(() => {
-        dipinink();
-    }, 0);
-    setTimeout(() => {
-        feather.style.transition = 'transform .5s ease, left .5s linear, top .5s linear';
+        feather.style.transition = `transform ${speed} ease, left ${speed} linear, top ${speed} linear`;
         feather.style.transform = 'rotateY(30deg) scaleX(0.5) scale(1.5)';
-        feather.style.left = '-20px';
-        feather.style.top = '105px';
-    }, 1000);
-    setTimeout(() => {
-        featherWrite();
-    }, 1800);
-    setTimeout(() => {
-        feather.style.transition = 'transform .2s ease, left .2s linear, top .2s linear';
-        feather.style.transform = 'rotateY(30deg) scaleX(0.5) scale(1.5)';
-        feather.style.left = '-20px';
-        feather.style.top = '155px';
-    }, 3300);
-    setTimeout(() => {
-        featherWrite();
-    }, 3800);
-    setTimeout(() => {
-        feather.style.transition = 'transform .2s ease, left .2s linear, top .2s linear';
-        feather.style.transform = 'rotateY(30deg) scaleX(0.5) scale(1.5)';
-        feather.style.left = '-20px';
-        feather.style.top = '205px';
-    }, 5300);
-    setTimeout(() => {
-        featherWrite();
-    }, 5800);
-    setTimeout(() => {
-        feather.style.transition = 'transform .2s ease, left .2s linear, top .2s linear';
-        feather.style.transform = 'rotateY(30deg) scaleX(0.5) scale(1)';
-        feather.style.left = '0px';
-        feather.style.top = '0px';
-    }, 7300);
-    setTimeout(() => {
-        laydownfeather();
-    }, 7800); 
-
+        feather.style.left = `-20px`;
+        feather.style.top = `${topPosition}px`;
+    }, 2500);
 }
 
 
 // Function to write text
-function featherWrite() {
+function featherWrite(distance) {
     const feather = document.querySelector('.feather');
+    const step = distance;
+    const writingMotions = [];
+    let progress = 0;
 
-    // Sequence of transformations for the writing motion
-    const writingMotions = [
-        { transform: 'rotate(5deg) rotateY(30deg) translateX(20px) scaleX(0.5) scale(1.3)' },
-        { transform: 'rotate(-1deg) rotateY(30deg) translateX(40px) scaleX(0.5) scale(1.3)' },
-        { transform: 'rotate(5deg) rotateY(33deg) translateX(60px) scaleX(0.5) scale(1.3)' },
-        { transform: 'rotate(-7deg) rotateY(30deg) translateX(80px) scaleX(0.5) scale(1.3)' },
-        { transform: 'rotate(8deg) rotateY(33deg) translateX(100px) scaleX(0.5) scale(1.3)' },
-        { transform: 'rotate(-2deg) rotateY(30deg) translateX(120px) scaleX(0.5) scale(1.3)' },
-        { transform: 'rotate(3deg) rotateY(33deg) translateX(140px) scaleX(0.5) scale(1.3)' },
-        { transform: 'rotate(-5deg) rotateY(30deg) translateX(160px) scaleX(0.5) scale(1.3)' },
-        { transform: 'rotate(6deg) rotateY(33deg) translateX(180px) scaleX(0.5) scale(1.3)' },
-        { transform: 'rotate(-1deg) rotateY(30deg) translateX(200px) scaleX(0.5) scale(1.3)' },
-        { transform: 'rotate(-10deg) rotateY(25deg) translateX(60px) translateY(-20px) scaleX(0.7) scale(1.5)' },
-    ];
+    for (let i = 1; i <= 10; i++) {
+        progress += step;
+        const direction = i % 2 === 0 ? -1 : 1; // Alternate direction
+        const transform = `rotate(${direction * 5}deg) rotateY(30deg) translateX(${progress}px) scaleX(0.5) scale(1.3)`;
+        writingMotions.push({ transform });
+    }
+
+    // Add the final transformation with extra translation
+    writingMotions.push({ transform: `rotate(0deg) rotateY(33deg) translateX(${distance}px) translateY(-20px) scaleX(0.7) scale(1.5)` });
 
     // Apply the transformations in sequence
     writingMotions.forEach((motion, index) => {
         setTimeout(() => {
-            feather.style.transition = 'transform 0.09s ease';
+            feather.style.transition = 'transform 0.2s ease';
             feather.style.transform = motion.transform;
-        }, index * 100); 
+        }, index * 50); // Adjust the interval as needed
     });
-
-    // Stop the animation after the sequence
-    setTimeout(() => {
-        feather.style.transition = 'none';
-        feather.style.transform = 'none';
-    }, writingMotions.length * 100 + 1500);
 }
 
-export { appendDelayedMessage, showWelcomeMessage, animateFeatherWriting };
+export { appendDelayedMessage, showPaperMessage, animateFeatherWriting, laydownfeather, dipinink, moveFeathertoNextLine};

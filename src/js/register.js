@@ -1,6 +1,6 @@
 // This is the src/js/register.js file
 
-import { appendDelayedMessage, showWelcomeMessage, animateFeatherWriting} from "./writingAnimations.js";
+import { appendDelayedMessage, showPaperMessage, animateFeatherWriting} from "./writingAnimations.js";
 import { flipRegistration } from "./bookAnimations.js";
 
 // Event listener for register form submission
@@ -43,9 +43,8 @@ async function registerUser(username, password, firstName, lastName, email) {
     animateFeatherWriting();
     welcomeText.innerHTML = '';
     setTimeout(async () => {
-      await showWelcomeMessage(welcomeText, `Welcome ${username}`);
-      await appendDelayedMessage(welcomeText, ` You have registered successfully !`, 2000);
-      await appendDelayedMessage(welcomeText, ` Now you can log in !`, 2000);
+      await showPaperMessage(welcomeText, `${username} registered!`);
+      await appendDelayedMessage(welcomeText, ` You can now log in!`, 2000);
       flipRegistration();
     }, 2000);
   } catch (error) {

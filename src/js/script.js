@@ -1,9 +1,31 @@
-// landing-page.js
+// this is the initial javascript
 
 import { flipCover, flipLogin, flipRegistration } from "./bookAnimations.js";
 import { fadeIn } from "./stoneAnimations.js";
 
+// Initialize session storage
+function initializeSessionStorage() {
+  const username = sessionStorage.getItem('username');
+  const userId = sessionStorage.getItem('userId');
+  const loggedIn = sessionStorage.getItem('loggedIn');
+
+  if (!username) {
+    sessionStorage.setItem('username', '');
+  }
+
+  if (!userId) {
+    sessionStorage.setItem('userId', '');
+  }
+
+  if (loggedIn !== 'true' && loggedIn !== 'false') {
+    sessionStorage.setItem('loggedIn', 'false');
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+    // Initialize session storage
+    initializeSessionStorage();
+
     const beginButton = document.getElementById("begin");
     const smallButton = document.querySelector(".smallbutton");
     const backButton = document.querySelector(".backbutton");
@@ -27,5 +49,4 @@ document.addEventListener("DOMContentLoaded", function () {
       // Attach a click event listener to the Register button
       backButton.addEventListener("pointerdown", flipRegistration);
     }
-  });
-  
+});
