@@ -3,16 +3,23 @@
   <head>
     <meta charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-    <link rel="stylesheet" href="css/index.css" >
+    <link rel="stylesheet" href="styles/index.css" >
+    <link rel="icon" href="images/inspirestone.png" type="image/png">
     <title>Inspire Stone | Home</title>
   </head>
   <body>
     <header>
-      <h1 id="welcomeText">.</h1>
-      <button id="logoutButton">Logout</button>
+      <div class="candle"></div>
+      <div class="quotes">
+        <div class="quoteText"></div>
+      </div>
+      <div class="stoneShadow"></div>
+      <div class="stone">
+        <h1 id="welcomeText">.</h1>
+        <button id="logoutButton">Logout</button>
+      </div>
     </header>
     <main>
-      <div class="candle"></div>
       <div id="book" class="book">
         <div id="cover" class="cover">
           <h2>Inspire Stone</h2>
@@ -24,10 +31,8 @@
           <form id="loginForm" action="javascript:void(0)">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required >
-
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required >
-
             <button type="submit" id="loginButton" class="loginBtn">login</button>
           </form>
           <div class="goRegister">
@@ -35,25 +40,19 @@
             <button class="smallbutton">go to register page</button>
           </div>
         </div>
-
         <div id="register" class="register">
           <h2>Register</h2>
           <form id="registerForm" action="javascript:void(0)">
             <label for="newUsername">Username:</label>
             <input type="text" id="newUsername" name="newUsername" required>
-      
             <label for="newPassword">Password:</label>
             <input type="password" id="newPassword" name="newPassword" required>
-      
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" name="firstName" required>
-      
             <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" required>
-      
+            <input type="text" id="lastName" name="lastName" required> 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
-      
             <button id="registerButton" class="registerButton" type="submit">Register</button>
           </form>
           <div class="goRegister">
@@ -61,10 +60,38 @@
           </div>
         </div>
         <div id="userPage" class="userPage">
-          <h2>This is the User page</h2>
+          <div class="tab"><p>user</p></div>
+          <h2>This is the user page</h2>
+        </div>
+        <div id="listenPage" class="listenPage">
+        <div class="tab"><p>listen</p></div>
+          <h2>This is the listen page</h2>
+        </div>
+        <div id="receivePage" class="receivePage">
+          <div class="tab"><p>receive</p></div>
+          <h2>This is the receive page</h2>
+        </div>
+        <div id="ponderPage" class="ponderPage">
+          <div class="tab"><p>ponder</p></div>
+          <h2>This is the ponder page</h2>
+        </div>
+        <div id="planPage" class="planPage">
+          <div class="tab"><p>plan</p></div>
+          <h2>This is the plan page</h2>
+        </div>
+        <div id="actPage" class="actPage">
+          <div class="tab"><p>act</p></div>
+          <h2>This is the act page</h2>
+        </div>
+        <div id="reviewPage" class="reviewPage">
+          <div class="tab"><p>review</p></div>
+          <h2>This is the review page</h2>
+        </div>
+        <div id="recordPage" class="recordPage">
+          <div class="tab"><p>record</p></div>
+          <h2>This is the record page</h2>
         </div>
       </div>
-    </div>
       <div class="paper">
         <div class="feather"></div>
         <div class="feathershadow"></div>

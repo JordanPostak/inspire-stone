@@ -1,0 +1,10 @@
+@import url('candle.css');
+@import url('stone.css');
+@import url('quotes.css');
+
+header{
+    display: flex;
+    position: absolute;
+    width: 100vw;
+    height: 25vh;
+}

@@ -69,22 +69,22 @@ function fadeIn(element) {
   }
 
 
-// Function to temporarily increase the brightness of the header image
-function fadeInHeaderBrightness() {
-  const header = document.querySelector('header');
-  if (header) {
+// Function to temporarily increase the brightness of the stone image
+function fadeInStoneBrightness() {
+  const stone = document.querySelector('.stone');
+  if (stone) {
     // Temporarily disable the stone-flicker animation
-    const originalAnimation = header.style.animation;
-    header.style.animation = 'none';
+    const originalAnimation = stone.style.animation;
+    stone.style.animation = 'none';
 
     // Apply the brightness effect animation
-    header.style.animation = 'increase-brightness 3s forwards';
+    stone.style.animation = 'increase-brightness 4s forwards';
 
     // After 1 second, re-enable the original stone-flicker animation
     setTimeout(() => {
-      header.style.animation = originalAnimation;
-    }, 3000);
+      stone.style.animation = originalAnimation;
+    }, 4000);
   }
 }
   
-  export { fadeIn, fadeOut, updateWelcomeMessage, fadeInHeaderBrightness };
+  export { fadeIn, fadeOut, updateWelcomeMessage, fadeInStoneBrightness };

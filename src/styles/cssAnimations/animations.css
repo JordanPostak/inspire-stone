@@ -1,0 +1,72 @@
+
+
+  @keyframes stone-flicker {
+    0% {
+      filter: contrast(130%);
+    }
+    50% {
+      filter: contrast(150%);
+    }
+    100% {
+      filter: contrast(130%);
+    }
+  }
+  /* Keyframes for the brightness effect */
+  @keyframes increase-brightness {
+    0% {
+      filter: brightness(100%);
+    }
+    20% {
+      filter: brightness(400%);
+    }
+    80% {
+      filter: brightness(400%);
+    }
+    100% {
+      filter: brightness(100%);
+    }
+}
+@keyframes item-flicker {
+    0% {
+        opacity: 0.9;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.9;
+    }
+  }
+  @keyframes face-flicker {
+    0% {
+      filter: contrast(120%);
+    }
+    50% {
+      filter: contrast(125%);
+    }
+    100% {
+      filter: contrast(120%);
+    }
+  }
+  @keyframes paper-flicker {
+    0% {
+        opacity: 0.75;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.75;
+    }
+  }
+  @keyframes flicker {
+    0% {
+      filter: contrast(150%);
+    }
+    50% {
+      filter: contrast(80%);
+    }
+    100% {
+      filter: contrast(150%);
+    }
+  }

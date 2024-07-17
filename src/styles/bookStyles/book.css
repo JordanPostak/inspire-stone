@@ -1,0 +1,14 @@
+@import url('../cssAnimations/animations.css');
+
+.book {
+    display: block;
+    position: absolute;
+    top: 25vh; /* Use top in viewport height */
+    left: 15vw; /* Initial position, will be adjusted in JavaScript */
+    width: 30vw;
+    height: 65vh;
+    perspective: 1000px;
+    transform-origin: top center; /* Ensure scaling happens from the top */
+    z-index: 2;
+  }
+

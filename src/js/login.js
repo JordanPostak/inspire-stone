@@ -2,7 +2,7 @@
 
 import { appendDelayedMessage, showPaperMessage, animateFeatherWriting, laydownfeather, dipinink, moveFeathertoNextLine } from "./writingAnimations.js";
 import { closeCover, changeCoverText, flipCover, flipLogin, flipToUserPage, zoomBookToScreen } from "./bookAnimations.js";
-import { fadeIn, fadeOut, updateWelcomeMessage, fadeInHeaderBrightness } from "./stoneAnimations.js";
+import { fadeIn, fadeOut, updateWelcomeMessage, fadeInStoneBrightness } from "./stoneAnimations.js";
 
 // Function to login a user via API
 async function loginUser(username, password) {
@@ -10,7 +10,6 @@ async function loginUser(username, password) {
     username: username,
     password: password,
   };
-
   try {
     const response = await fetch('https://seerstoneapi.onrender.com/users/login', {
       method: 'POST',
@@ -20,25 +19,19 @@ async function loginUser(username, password) {
       },
       body: JSON.stringify(credentials),
     });
-
     if (response.status === 404) {
       throw new Error('User not found');
     }
-
     if (!response.ok) {
       throw new Error('Login failed');
     }
-
     const result = await response.json();
-
     if (result.user.user_id && result.user.username) {
       console.log('User logged in successfully:', result);
-
       // Set session storage items
       sessionStorage.setItem('loggedIn', 'true');
       sessionStorage.setItem('userId', result.user.user_id);
       sessionStorage.setItem('username', result.user.username);
-
       // Update UI elements
       changeCoverText();
       closeCover();
@@ -49,21 +42,22 @@ async function loginUser(username, password) {
       setTimeout(() => animateFeatherWriting('0.02s', 25, 0), 3500);
       setTimeout(() => moveFeathertoNextLine(0), 4100);
       setTimeout(() => laydownfeather(), 6100);
-
-      fadeInHeaderBrightness();
+      fadeInStoneBrightness();
       setTimeout(updateWelcomeMessage, 2500);
       setTimeout(() => fadeIn(logoutButton), 3000);
-
-      const paper = document.querySelector('.paperMessage');
-      paper.innerHTML = '';
+      const paperMessage = document.querySelector('.paperMessage');
+      paperMessage.innerHTML = '';
       setTimeout(async () => {
-        await showPaperMessage(paper, `${result.user.username}`, 1000);
-        await appendDelayedMessage(paper, "logged in successfully!", 1500);
+        await showPaperMessage(paperMessage, `${result.user.username}`, 1000);
+        await appendDelayedMessage(paperMessage, "logged in successfully!", 1500);
         setTimeout(() => fadeOut(document.querySelector('.paperMessage')), 2500);
         setTimeout(flipCover, 3000);
         setTimeout(flipLogin, 3500);
         setTimeout(flipToUserPage, 4000);
         setTimeout(zoomBookToScreen,4500);
+        setTimeout(async () => {
+          book.style.transition = 'transform 0s ease, top 0s ease, left 0s ease';
+        }, 5000);
       }, 2000);
     } else {
       throw new Error('User not found in the database');
@@ -73,14 +67,13 @@ async function loginUser(username, password) {
     sessionStorage.setItem('username', '');
     sessionStorage.setItem('userId', '');
     sessionStorage.setItem('loggedIn', 'false');
-
     // Update UI with error message
-    const paper = document.querySelector('.paperMessage');
-    paper.innerHTML = '';
+    const paperMessage = document.querySelector('.paperMessage');
+    paperMessage.innerHTML = '';
     // animateFeatherWriting();
     setTimeout(async () => {
-      await showPaperMessage(paper, "Login Error", 500);
-      await appendDelayedMessage(paper, " Incorrect onformation", 1000);
+      await showPaperMessage(paperMessage, "Login Error", 500);
+      await appendDelayedMessage(paperMessage, " Incorrect onformation", 1000);
     }, 2000);
   }
 }
@@ -94,11 +87,11 @@ async function handleLoginFormSubmission(event) {
     await loginUser(username, password);
   } catch (error) {
     console.error("Error logging in:", error);
-    const paper = document.querySelector('.paper');
+    const paperElement = document.querySelector('.paper');
     const userNotFound = document.createElement('p');
     userNotFound.textContent = "Please check your username and password, and then try again!";
     userNotFound.className = "userNotFound";
-    paper.append(userNotFound);
+    paperElement.append(userNotFound);
   }
 }
 

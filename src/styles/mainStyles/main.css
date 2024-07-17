@@ -1,0 +1,9 @@
+@import url('paper.css');
+
+main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  
