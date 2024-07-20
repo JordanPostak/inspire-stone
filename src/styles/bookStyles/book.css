@@ -1,4 +1,15 @@
 @import url('../cssAnimations/animations.css');
+@import url('login.css');
+@import url('cover.css');
+@import url('register.css');
+@import url('userPage.css');
+@import url('listenPage.css');
+@import url('recievePage.css');
+@import url('ponderPage.css');
+@import url('planPage.css');
+@import url('actPage.css');
+@import url('reviewPage.css');
+@import url('recordPage.css');
 
 .book {
     display: block;
@@ -10,5 +21,33 @@
     perspective: 1000px;
     transform-origin: top center; /* Ensure scaling happens from the top */
     z-index: 2;
+  }
+
+  .tab{
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    right: -2.5vw;
+    width: 10%;
+    height: 10%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: block;
+    background-image: url("/images/old_paper2.jpg");
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    cursor: pointer;
+  }
+  .tab p{
+    margin: 0px;
+    padding: 0px;
+    margin-top: 5px;
+    margin-left: 5px;
+    position: relative;
+    font-weight: bold;
+    rotate: -90deg;
+    font-size: 1.2rem;
+    color: rgba(48, 31, 16, 0.675);
   }
 

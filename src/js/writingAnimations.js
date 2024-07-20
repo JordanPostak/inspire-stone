@@ -46,25 +46,25 @@ function dipinink() {
     featherShadow.style.opacity = '0';
     // Stand feather up
     setTimeout(() => {
-        feather.style.transition = 'transform .5s ease, left .5s linear, top .5s linear';
+        feather.style.transition = 'transform 0.2s ease, left 0.2s ease, top 0.2s ease';
         feather.style.transform = 'rotateY(-40deg) scaleX(.5) scale(1.5)';
     }, 0);
     // Move to ink
     setTimeout(() => {
-        feather.style.transition = 'transform .5s ease, left .5s linear, top .5s linear';
+        feather.style.transition = 'transform 0.2s ease, left 0.2s ease, top 0.2s ease';
         feather.style.transform = 'rotateY(-40deg) scaleX(0.5) scale(1.5)';
         feather.style.left = '230px';
         feather.style.top = '78px';
     }, 0);
     // Dip in ink
     setTimeout(() => {
-        feather.style.transition = 'transform .5s ease, left .5s linear, top .5s linear';
+        feather.style.transition = 'transform 0.2s ease, left 0.2s ease, top 0.2s ease';
         feather.style.transform = 'rotateY(-50deg) scaleX(0.5) scale(1.3)';
         feather.style.left = '200px';
         feather.style.top = '55px';
     }, 450);
     setTimeout(() => {
-        feather.style.transition = 'transform .5s ease, left .5s linear, top .5s linear';
+        feather.style.transition = 'transform 0.2s ease, left 0.2s ease, top 0.2s ease';
         feather.style.transform = 'rotateY(-40deg) scaleX(0.5) scale(1.5)';
         feather.style.left = '230px';
         feather.style.top = '78px';
@@ -78,27 +78,26 @@ function laydownfeather() {
     const featherShadow = document.querySelector('.feathershadow');
     // lay down feather
     setTimeout(() => {
-        feather.style.transition = 'transform .5s ease, left .5s linear, top .5s linear';
+        feather.style.transition = 'transform 0.2s ease, left 0.2s ease, top 0.2s ease';
         feather.style.transform = 'rotateY(0deg) scaleX(1) scale(1)';
-        feather.style.left = '32px';
-        feather.style.top = '12px';
+        feather.style.left = '20px';
+        feather.style.top = '-20px';
     }, 0);
     // Show feather shadow again after laying down
     setTimeout(() => {
-        featherShadow.style.transition = 'opacity 1s ease';
         featherShadow.style.opacity = '2'; 
-    }, 600); 
+    }, 200); 
     // Re-enable animation on feathershadow
     setTimeout(() => {
         featherShadow.style.animation = 'item-flicker .15s infinite alternate';
-    }, 600);
+    }, 200);
 }
 
 // function to move feather down to next line
 function moveFeathertoNextLine(topPosition) {
     const feather = document.querySelector('.feather');
     feather.style.top = `${topPosition}px`;
-    feather.style.transition = 'transform .5s ease, left .5s linear, top .5s linear';
+    feather.style.transition = 'transform 0.2s ease, left 0.2s ease, top 0.2s ease';
     feather.style.transform = 'rotateY(30deg) scaleX(0.5) scale(1.5)';
     feather.style.left = '-20px';
 }

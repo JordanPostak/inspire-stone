@@ -3,6 +3,7 @@
 import { appendDelayedMessage, showPaperMessage, animateFeatherWriting, laydownfeather, dipinink, moveFeathertoNextLine } from "./writingAnimations.js";
 import { closeCover, changeCoverText, flipCover, flipLogin, flipToUserPage, zoomBookToScreen } from "./bookAnimations.js";
 import { fadeIn, fadeOut, updateWelcomeMessage, fadeInStoneBrightness } from "./stoneAnimations.js";
+import { enableFeatherMovement, disableFeatherMovement } from "./featherFollow.js";
 
 // Function to login a user via API
 async function loginUser(username, password) {
@@ -35,15 +36,18 @@ async function loginUser(username, password) {
       // Update UI elements
       changeCoverText();
       closeCover();
+      disableFeatherMovement();
       dipinink()
       setTimeout(() => moveFeathertoNextLine(100), 900);
       setTimeout(() => animateFeatherWriting('0.02s', 15, 0), 1900);
       setTimeout(() => moveFeathertoNextLine(160), 2500);
       setTimeout(() => animateFeatherWriting('0.02s', 25, 0), 3500);
       setTimeout(() => moveFeathertoNextLine(0), 4100);
-      setTimeout(() => laydownfeather(), 6100);
+      setTimeout(() => laydownfeather(), 5000);
+      setTimeout(() => enableFeatherMovement(), 5500);
       fadeInStoneBrightness();
       setTimeout(updateWelcomeMessage, 2500);
+      const logoutButton = document.getElementById('logoutButton')
       setTimeout(() => fadeIn(logoutButton), 3000);
       const paperMessage = document.querySelector('.paperMessage');
       paperMessage.innerHTML = '';

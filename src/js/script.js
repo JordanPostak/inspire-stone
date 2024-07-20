@@ -1,7 +1,8 @@
 // this is the initial javascript
 
-import { flipCover, flipLogin, flipRegistration, zoomBookLoggedIn } from "./bookAnimations.js";
+import { flipCover, flipLogin, flipRegistration, revertCoverText, zoomBookLoggedIn, turnToPage } from "./bookAnimations.js";
 import { fadeIn, fadeOut } from "./stoneAnimations.js";
+import { updateFeatherPosition, resetFeather, allowFeatherMovement } from './featherFollow.js';
 
 // Initialize session storage
 function initializeSessionStorage() {
@@ -19,6 +20,27 @@ function initializeSessionStorage() {
   }
 }
 
+// Initialize feather follow behavior
+let timeoutId;
+
+// Event listener for mouse movement
+document.addEventListener('mousemove', (event) => {
+    if (!allowFeatherMovement) return;
+    clearTimeout(timeoutId); // Clear any existing timeout
+    // Update feather position and rotation
+    updateFeatherPosition(event);
+    // Set a timeout to reset the feather if mouse stops moving
+    timeoutId = setTimeout(resetFeather, 2000); // Adjust the timeout duration as needed
+});
+
+// Event listener for mouse leaving the viewport
+document.addEventListener('mouseleave', () => {
+    if (!allowFeatherMovement) return;
+    clearTimeout(timeoutId); // Clear any existing timeout
+    // Set a timeout to transition the feather back to its original position after the mouse leaves the viewport
+    timeoutId = setTimeout(resetFeather, 500); // Adjust delay as needed
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     // Initialize session storage
     initializeSessionStorage();
@@ -27,6 +49,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const backButton = document.querySelector(".backbutton");
     const welcomeText = document.getElementById("welcomeText");
     const book = document.querySelector('.book');
+    const coverText = document.getElementById('coverText');
+    setTimeout(async () => {
+      fadeIn(coverText);
+    }, 1000);
+    setTimeout(async () => {
+      fadeIn(beginButton);
+    }, 2000);
     if (welcomeText) {
         fadeIn(welcomeText); // Fade in welcome text element on page load
     }
@@ -54,6 +83,34 @@ document.addEventListener("DOMContentLoaded", function () {
     book.style.zIndex = 4;
     book.style.transition = 'transform 0s ease, top 0s ease, left 0s ease';
   }
+  const tabs = document.querySelectorAll('.tab');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', (event) => {
+      if (sessionStorage.getItem('loggedIn') === 'true') {
+        const pageId = event.currentTarget.parentElement.id;
+        turnToPage(pageId);
+      } else {
+        alert('You need to be logged in to access this page.');
+      }
+    });
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('.tab');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', (event) => {
+      if (sessionStorage.getItem('loggedIn') === 'true') {
+        const pageId = event.currentTarget.parentElement.id;
+        turnToPage(pageId);
+      } else {
+        alert('You need to be logged in to access this page.');
+      }
+    });
+  });
 });
 
 
@@ -91,7 +148,7 @@ async function fetchRandomQuote() {
 // Function to keep the app active
 function keepAppActive() {
   fetchRandomQuote(); // Fetch a random quote immediately
-  setInterval(fetchRandomQuote, 1 * 60 * 1000); // Fetch a random quote every 10 minutes
+  setInterval(fetchRandomQuote, 10 * 60 * 1000); // Fetch a random quote every 10 minutes
 }
 
 // Start keeping the app active

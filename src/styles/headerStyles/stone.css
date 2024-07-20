@@ -30,6 +30,7 @@
     justify-content: center;
     align-content: center;
     transition: filter 0.5s; /* Smooth transition for filter property */
+    z-index: 2;
   }
 
   .stoneShadow {
@@ -46,6 +47,7 @@
     animation: item-flicker  .15s infinite alternate;
     pointer-events: none;
     rotate: -20deg;
+    z-index: 2;
   }
   #logoutButton {
     opacity: 0;

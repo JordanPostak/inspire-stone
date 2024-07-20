@@ -4,13 +4,12 @@
   .paper {
     position: absolute;
     display: block;
-    top: 30vh;
-    right: 15vw;
+    top: 6vh;
+    right: 8vw;
     background-image: url("/images/paper.png");
     background-size: cover;
-    width: 500px;
-    height: 350px;
-    transform: rotate(-15deg);
+    width: 43vw;
+    height: 60vh;
   }
   .paper::after {
     content: "";
@@ -43,10 +42,11 @@
     position: absolute;
     width: 370px;
     height: 320px;
-    left: 32px;
-    top: 12px;
-    z-index: 10000;
-    transition: transform 0.0001s ease;
+    left: 20px; /* Initial position */
+    top: -20px;  /* Initial position */
+    z-index: 1;
+    transition: transform 0.2s ease, left 0.2s ease, top 0.2s ease; /* Smooth transition */
+    pointer-events: none;
   }
   
   .feathershadow {
@@ -56,9 +56,10 @@
     position: absolute;
     width: 450px;
     height: 400px;
-    margin-top: -60px;
+    margin-top: -95px;
+    margin-left: 10px;
     animation: item-flicker .15s infinite alternate;
-    visibility: visible;
+    opacity: 0;
   }
   .ink {
     margin-top: -60px;
@@ -67,7 +68,7 @@
     position: absolute;
     width: 450px;
     height: 400px;
-    z-index: 2;
+    z-index: 1;
   }
   .inkshadow {
     background-image: url("/images/inkshadow.png");
@@ -75,16 +76,9 @@
     position: absolute;
     width: 450px;
     height: 400px;
-    margin-top: -60px;
+    margin-top: 0px;
+    margin-left: 45px;
     animation: item-flicker .15s infinite alternate;
-    z-index: 1;
+    z-index: 0;
+    transform: rotate(-40deg);
   }
-  /* .picture {
-    position: absolute;
-    top: 350px;
-    left: 1000px;
-    display: block;
-    background-image: url("/images/featherpen.png");
-    width: 400px;
-    height: 300px;
-  } */

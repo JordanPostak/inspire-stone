@@ -1,0 +1,37 @@
+.userPage {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-image: url("/images/old-paper.jpg");
+  background-size: 100% 100%;
+  text-align: center;
+  align-items: center;
+  color: rgba(72, 52, 37, 0.686);
+  animation: face-flicker .15s infinite;
+}
+
+.userPage {
+  transform-origin: left center;
+  transition:
+    transform 2s,
+    left 2s;
+  z-index: 1;
+  border-left: solid 1px rgb(118, 74, 40);
+  width: 99%;
+  height: 98%;
+  margin-top: 5px;
+}
+
+.userPage{
+  z-index: -1;
+}
+
+.userPage .tab {
+  top: 0.5vh;
+}
+
+.userPage h2{
+  font-size: 1.6rem;
+  margin-bottom: 0px;
+  margin-left: -200px;
+}

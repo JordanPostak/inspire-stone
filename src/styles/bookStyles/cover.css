@@ -1,0 +1,72 @@
+.cover::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.748);
+    animation: item-flicker .15s infinite alternate;
+    pointer-events: none; /* Make sure the pseudo-element does not interfere with click events */
+    transition: box-shadow 0.5s ease;
+  }
+  
+  .cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transform-origin: left center;
+    transition: transform 2s, left 2s;
+    z-index: 2;
+    background-image: url("/images/cover.jpg");
+    background-size: 100% 100%;
+    border-radius: 3px;
+    filter: contrast(120%);
+    animation: face-flicker .15s infinite;
+  }
+  .cover h1,
+  .cover h2,
+  .cover h3,
+  .cover p,
+  .cover h4,
+  .cover button {
+    color: rgba(198, 158, 58, 0.752);
+    margin-top: 10px;
+    margin-left: 35%;
+    margin-right: 25%;
+    border-radius: 25px;
+  }
+  .cover h2 {
+    margin-top: 20px;
+    font-size: 2.4rem;
+    font-weight: bolder;
+  }
+  .cover p {
+    font-size: 2rem;
+  }
+  #coverText{
+    opacity: 0;
+  }
+  .cover button:hover {
+    color: #321a00;
+    background-color: rgba(253, 227, 163, 0.7);
+  }
+  .cover button {
+    font-size: 2rem;
+    font-family: inherit;
+    background: none;
+    border: solid 0.5px rgba(198, 158, 58, 0.595);
+    cursor: pointer;
+  }
+  .begin {
+    opacity: 0;
+    cursor: pointer;
+    display: block;
+    transition: color .5s, background-color 2s;
+  }

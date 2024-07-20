@@ -1,0 +1,122 @@
+.register::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.748);
+    animation: item-flicker .15s infinite alternate;
+    pointer-events: none; /* Make sure the pseudo-element does not interfere with click events */
+    transition: box-shadow 0.5s ease;
+  }
+  
+  .register {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-image: url("/images/old-paper.jpg");
+    background-size: 100% 100%;
+    text-align: center;
+    align-items: center;
+    color: rgba(72, 52, 37, 0.686);
+    animation: face-flicker .15s infinite;
+  }
+  
+  .register {
+    transform-origin: left center;
+    transition:
+      transform 2s,
+      left 2s;
+    z-index: 1;
+    border-left: solid 1px rgb(118, 74, 40);
+    width: 99%;
+    height: 98%;
+    margin-top: 5px;
+  }
+  .register {
+    z-index: 0;
+  }
+  
+  .register h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0px;
+    margin-left: -200px;
+  }
+  
+  .register label {
+    font-weight: bold;
+    color: rgba(72, 52, 37, 0.686);
+    font-size: 1.2rem;
+  }
+  
+  #registerForm input {
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(72, 52, 37, 0.686);
+    outline: none;
+    font-family: inherit;
+    font-size: 1.4rem;
+    margin-top: -10px;
+    font-weight: bold;
+    color: rgba(72, 52, 37, 0.686);
+    text-align: center;
+  }
+  
+  #registerForm {
+    width: 70%;
+    margin-top: -40px;
+  }
+  
+  #registerForm button {
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 1.3rem;
+    font-family: inherit;
+    background: none;
+    border: solid 1px rgba(72, 52, 37, 0.686);
+    border-radius: 50px;
+    cursor: pointer;
+    margin-bottom: -10px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: rgba(72, 52, 37, 0.686);
+  }
+
+  .backbutton {
+    cursor: pointer;
+    font-size: 1.3rem;
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-weight: bold;
+    text-decoration: underline;
+    color: rgba(72, 52, 37, 0.686);
+  }
+  
+  button#registerButton:hover {
+    color: limegreen;
+    text-decoration: none;
+  }
+
+  .backbutton:hover {
+    text-decoration: none;
+    color: #7f5908;
+  }
+  .goLogin {
+    margin-top: -10px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: rgba(72, 52, 37, 0.686);
+  }
+
+  #registerForm {
+    width: 70%;
+    margin-top: -40px;
+  }
