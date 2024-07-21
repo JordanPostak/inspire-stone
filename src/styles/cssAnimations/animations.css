@@ -26,6 +26,21 @@
       filter: brightness(100%);
     }
 }
+  /* Keyframes for the brightness effect */
+  @keyframes shiny-flicker {
+    0% {
+      filter: brightness(100%);
+      filter: contrast(115%);
+    }
+    50% {
+      filter: brightness(105%);
+      filter: contrast(110%);
+    }
+    100% {
+      filter: brightness(100%);
+      filter: contrast(115%);
+    }
+}
 @keyframes item-flicker {
     0% {
         opacity: 0.9;

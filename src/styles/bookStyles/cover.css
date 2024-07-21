@@ -28,7 +28,7 @@
     background-size: 100% 100%;
     border-radius: 3px;
     filter: contrast(120%);
-    animation: face-flicker .15s infinite;
+    animation: shiny-flicker .15s infinite;
   }
   .cover h1,
   .cover h2,

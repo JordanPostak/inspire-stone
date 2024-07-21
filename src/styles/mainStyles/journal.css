@@ -4,23 +4,34 @@
   .journal {
     position: absolute;
     display: block;
-    top: 20vh;
-    right: 8vw;
+    top: 23vh;
+    right: 0vw;
     background-image: url("/images/redleatherjournal.png");
-    background-size: cover;
-    width: 43vw;
-    height: 60vh;
-    z-index: 3;
+    background-size: 100% 100%;
+    width: 18vw;
+    height: 50vh;
+    z-index: 1;
+    transform: rotate(-7deg);
+    animation: shiny-flicker .15s infinite;
   }
-  .journal::after {
+  .journalShadow {
+    display: block;
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.671); /* Initial flicker shadow */
-    animation: paper-flicker .15s infinite alternate;
+    top: 25vh;
+    right: -2vw;
+    width: 18vw;
+    height: 50vh;
+    transform: rotate(-7deg);
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.847);
+    box-shadow: 
+        0 0 15px rgb(0, 0, 0),
+        0 0 15px rgb(0, 0, 0),
+        0 0 15px rgb(0, 0, 0);
+    animation: item-flicker .15s infinite alternate;
     pointer-events: none;
+    transition: box-shadow 0.5s ease;
+    z-index: 1;
   }
   

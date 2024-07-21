@@ -1,8 +1,9 @@
 // this is the initial javascript
 
-import { flipCover, flipLogin, flipRegistration, revertCoverText, zoomBookLoggedIn, turnToPage } from "./bookAnimations.js";
+import { flipCover, flipLogin, flipRegistration, zoomBookLoggedIn, turnToPage } from "./bookAnimations.js";
 import { fadeIn, fadeOut } from "./stoneAnimations.js";
 import { updateFeatherPosition, resetFeather, allowFeatherMovement } from './featherFollow.js';
+import { fetchAllPagesContent } from "./pageContent.js";
 
 // Initialize session storage
 function initializeSessionStorage() {
@@ -42,6 +43,10 @@ document.addEventListener('mouseleave', () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Fetch and display content for all pages
+
+  fetchAllPagesContent();
+
     // Initialize session storage
     initializeSessionStorage();
     const beginButton = document.getElementById("begin");

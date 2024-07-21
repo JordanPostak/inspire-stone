@@ -36,15 +36,16 @@
   .stoneShadow {
     display: block;
     position: absolute;
-    top: 25px;
-    right: 100px;
-    width: 100px;
-    height: 100px;
+    top: -20px;
+    right: 30px;
+    width: 200px;
+    height: 200px;
     content: "";
-    background-color: rgba(0, 0, 0, 0.641);
-    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.641);
-    border-radius: 100px;
-    animation: item-flicker  .15s infinite alternate;
+    background: 
+        radial-gradient(circle, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 60%),
+        radial-gradient(circle, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 60%);
+    background-size: 100% 100%;
+    animation: item-flicker .15s infinite alternate;
     pointer-events: none;
     rotate: -20deg;
     z-index: 2;

@@ -1,4 +1,5 @@
 import { fadeOut, fadeIn } from "./stoneAnimations.js";
+import { fetchAndDisplayContent } from "./pageContent.js";
  
  //Function to flip book cover
  function flipCover() {
@@ -329,6 +330,8 @@ function zoomBookLoggedIn() {
   userPage.classList.add('no-shadow');
 }
 
+
+//funtion to turn to a specific page
 function turnToPage(targetPageId) {
   const pages = [
     'userPage',

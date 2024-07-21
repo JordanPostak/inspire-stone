@@ -1,4 +1,5 @@
 @import url('paper.css');
+@import url('journal.css');
 
 main {
     display: flex;
