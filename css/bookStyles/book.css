@@ -34,7 +34,7 @@
     justify-content: center;
     text-align: center;
     display: block;
-    background-image: url("/images/old_paper2.jpg");
+    background-image: url("../../images/old_paper2.jpg");
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
     cursor: pointer;
