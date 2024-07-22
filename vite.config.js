@@ -2,10 +2,9 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: '.', 
-
+  base: '/inspire-stone/',
   build: {
-    outDir: 'dist', 
+    outDir: 'dist',
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
