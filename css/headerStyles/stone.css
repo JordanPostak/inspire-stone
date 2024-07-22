@@ -20,7 +20,7 @@
     right: 6vw;
     width: 200px;
     height: 150px;
-    background-image: url("/images/inspirenoshadow.png");
+    background-image: url("images/inspirenoshadow.png");
     rotate: 10deg;
     background-position: center;
     background-size:cover;

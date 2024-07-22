@@ -5,7 +5,7 @@
     display: inline-block;
     top: 10px;
     left: 20%;
-    background-image: url("/images/paper.png");
+    background-image: url("images/paper.png");
     background-size: cover;
     width:30vw;
     height: 20vh;
