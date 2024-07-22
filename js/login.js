@@ -77,7 +77,7 @@ async function loginUser(username, password) {
     // animateFeatherWriting();
     setTimeout(async () => {
       await showPaperMessage(paperMessage, "Login Error", 500);
-      await appendDelayedMessage(paperMessage, " Incorrect onformation", 1000);
+      await appendDelayedMessage(paperMessage, " Incorrect information", 1000);
     }, 2000);
   }
 }
