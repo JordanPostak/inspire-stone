@@ -3,7 +3,7 @@
 .candle {
     width: 350px;
     height: 300px;
-    background-image: url("images/candle.png");
+    background-image: url("../../images/candle.png");
     background-size: cover;
     position: absolute;
     box-shadow: none;
