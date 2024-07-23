@@ -45,10 +45,9 @@ document.addEventListener('mouseleave', () => {
 document.addEventListener("DOMContentLoaded", function () {
   // Fetch and display content for all pages
 
-  fetchAllPagesContent();
-
     // Initialize session storage
     initializeSessionStorage();
+    fetchAllPagesContent();
     const beginButton = document.getElementById("begin");
     const smallButton = document.querySelector(".smallbutton");
     const backButton = document.querySelector(".backbutton");

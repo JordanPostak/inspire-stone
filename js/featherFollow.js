@@ -6,11 +6,21 @@ function updateFeatherPosition(event) {
     const feather = document.getElementById('feather');
     const featherShadow = document.getElementById('feathershadow');
     feather.style.zIndex = 10;
-    // Update feather's position based on mouse coordinates
-    feather.style.left = `${event.clientX - feather.clientWidth / 2 - 525}px`;
-    feather.style.top = `${event.clientY - feather.clientHeight / 2 + 70}px`;
+    // Calculate dynamic offsets
+    const leftOffset = event.clientX - feather.clientWidth / 2 - window.innerWidth * 0.43;
+    const topOffset = event.clientY - feather.clientHeight / 2 + window.innerHeight * -0.15;
+
+    // Convert pixel offsets to viewport units
+    const leftVw = (leftOffset / window.innerWidth) * 100;
+    const topVh = (topOffset / window.innerHeight) * 100;
+
+    // Update feather's position using viewport units
+    feather.style.left = `${leftVw}vw`;
+    feather.style.top = `${topVh}vh`;
+
     // Apply 45-degree rotation
     feather.style.transform = 'rotateY(-40deg) scaleX(.5) scale(1.5)';
+
     // Turn off animation and fade out shadow
     featherShadow.style.animation = 'none';
     featherShadow.style.opacity = 0;
@@ -22,8 +32,8 @@ function resetFeather() {
     const feather = document.getElementById('feather');
     const featherShadow = document.getElementById('feathershadow');
     // Reset position and rotation
-    feather.style.left = '20px';
-    feather.style.top = '-20px';
+    feather.style.left = '2vw';
+    feather.style.top = '-2vh';
     feather.style.transform = 'rotate(0deg)';
     // Reset animation and fade in shadow
     setTimeout(() => {

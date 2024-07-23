@@ -1,7 +1,8 @@
 // Import any necessary functions or modules
 import { fadeIn, fadeOut } from "./stoneAnimations.js";
 import { zoomBookOut, changeCoverText, flipRegistration, closeCover, flipBackFromUserPage, resetPages } from "./bookAnimations.js";
-import { laydownfeather } from "./writingAnimations.js";
+import { dipinink, animateFeatherWriting, moveFeathertoNextLine, laydownfeather, showPaperMessage } from "./writingAnimations.js";
+import { disableFeatherMovement, enableFeatherMovement } from "./featherFollow.js";
 
 // Function to handle logout
 function handleLogout() {
@@ -15,7 +16,7 @@ function handleLogout() {
     laydownfeather();
     setTimeout(() => {
       zoomBookOut();
-    }, 500);
+    }, 0);
     setTimeout(resetPages, 0);
     setTimeout(flipBackFromUserPage, 500);
     setTimeout(flipRegistration, 1000);
@@ -24,18 +25,23 @@ function handleLogout() {
     
     // Optionally, update the UI to reflect logout status
     const welcomeMessage = document.querySelector('.paperMessage');
-    if (welcomeMessage) {
-      fadeOut(welcomeMessage);
-      setTimeout(() => {
-        welcomeMessage.textContent = 'Good Bye';
-        fadeIn(welcomeMessage);
-      }, 500);
-    }
+    fadeOut(welcomeMessage);
+    disableFeatherMovement();
+    setTimeout(() => dipinink(), 600);
+    setTimeout(() => moveFeathertoNextLine(10), 900);
+    setTimeout(() => animateFeatherWriting('1s', .5, 0), 2000);
+    setTimeout(() => moveFeathertoNextLine(0), 3500);
+    setTimeout(() => laydownfeather(), 4500);
+    setTimeout(() => enableFeatherMovement(), 5000);
+
+    const paperMessage = document.querySelector('.paperMessage');
+    paperMessage.innerHTML = '';
+    setTimeout(() => showPaperMessage(paperMessage, "Good Bye!", 500), 2500);
 
     // Redirect to login or home page
     setTimeout(() => {
       window.location.href = 'index.html';
-    }, 3500);
+    }, 5500);
   }
 }
 

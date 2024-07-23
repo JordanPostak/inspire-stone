@@ -1,14 +1,14 @@
 @import url('../cssAnimations/animations.css');
 
 .candle {
-    width: 350px;
-    height: 300px;
+    width: 27vw;
+    height: 50vh;
     background-image: url("../../images/candle.png");
-    background-size: cover;
+    background-size: 100% 100%;
     position: absolute;
     box-shadow: none;
     background-color: transparent;
-    top: 1vh;
+    top: 2vh;
     left: 10vw;
     z-index: 3;
     animation: flicker .15s infinite;

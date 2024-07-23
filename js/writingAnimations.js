@@ -53,21 +53,21 @@ function dipinink() {
     setTimeout(() => {
         feather.style.transition = 'transform 0.2s ease, left 0.2s ease, top 0.2s ease';
         feather.style.transform = 'rotateY(-40deg) scaleX(0.5) scale(1.5)';
-        feather.style.left = '230px';
-        feather.style.top = '78px';
+        feather.style.left = '14.5vw';
+        feather.style.top = '5.8vh';
     }, 0);
     // Dip in ink
     setTimeout(() => {
         feather.style.transition = 'transform 0.2s ease, left 0.2s ease, top 0.2s ease';
         feather.style.transform = 'rotateY(-50deg) scaleX(0.5) scale(1.3)';
-        feather.style.left = '200px';
-        feather.style.top = '55px';
+        feather.style.left = '12vw';
+        feather.style.top = '5.5vh';
     }, 450);
     setTimeout(() => {
         feather.style.transition = 'transform 0.2s ease, left 0.2s ease, top 0.2s ease';
         feather.style.transform = 'rotateY(-40deg) scaleX(0.5) scale(1.5)';
-        feather.style.left = '230px';
-        feather.style.top = '78px';
+        feather.style.left = '14.5vw';
+        feather.style.top = '5.8vh';
     }, 900);
 }
 
@@ -80,8 +80,8 @@ function laydownfeather() {
     setTimeout(() => {
         feather.style.transition = 'transform 0.2s ease, left 0.2s ease, top 0.2s ease';
         feather.style.transform = 'rotateY(0deg) scaleX(1) scale(1)';
-        feather.style.left = '20px';
-        feather.style.top = '-20px';
+        feather.style.left = '2vw';
+        feather.style.top = '-2vh';
     }, 0);
     // Show feather shadow again after laying down
     setTimeout(() => {
@@ -96,10 +96,10 @@ function laydownfeather() {
 // function to move feather down to next line
 function moveFeathertoNextLine(topPosition) {
     const feather = document.querySelector('.feather');
-    feather.style.top = `${topPosition}px`;
+    feather.style.top = `${topPosition}vh`;
     feather.style.transition = 'transform 0.2s ease, left 0.2s ease, top 0.2s ease';
     feather.style.transform = 'rotateY(30deg) scaleX(0.5) scale(1.5)';
-    feather.style.left = '-20px';
+    feather.style.left = '-2vw';
 }
 
 // Function to animate featherpen writing the paperMessage
@@ -110,9 +110,9 @@ function animateFeatherWriting(speed, distance, topPosition) {
     setTimeout(() => {
         feather.style.transition = `transform ${speed} ease, left ${speed} linear, top ${speed} linear`;
         feather.style.transform = 'rotateY(30deg) scaleX(0.5) scale(1.5)';
-        feather.style.left = `-20px`;
-        feather.style.top = `${topPosition}px`;
-    }, 2500);
+        feather.style.left = `-2vw`;
+        feather.style.top = `${topPosition}vh`;
+    }, 1900);
 }
 
 
@@ -126,12 +126,12 @@ function featherWrite(distance) {
     for (let i = 1; i <= 10; i++) {
         progress += step;
         const direction = i % 2 === 0 ? -1 : 1; // Alternate direction
-        const transform = `rotate(${direction * 5}deg) rotateY(30deg) translateX(${progress}px) scaleX(0.5) scale(1.3)`;
+        const transform = `rotate(${direction * 5}deg) rotateY(30deg) translateX(${progress}vw) scaleX(0.5) scale(1.3)`;
         writingMotions.push({ transform });
     }
 
     // Add the final transformation with extra translation
-    writingMotions.push({ transform: `rotate(0deg) rotateY(33deg) translateX(${distance}px) translateY(-20px) scaleX(0.7) scale(1.5)` });
+    writingMotions.push({ transform: `rotate(0deg) rotateY(33deg) translateX(${distance}vw) translateY(-2vw) scaleX(0.7) scale(1.5)` });
 
     // Apply the transformations in sequence
     writingMotions.forEach((motion, index) => {

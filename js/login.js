@@ -38,13 +38,13 @@ async function loginUser(username, password) {
       closeCover();
       disableFeatherMovement();
       dipinink()
-      setTimeout(() => moveFeathertoNextLine(100), 900);
-      setTimeout(() => animateFeatherWriting('0.02s', 15, 0), 1900);
-      setTimeout(() => moveFeathertoNextLine(160), 2500);
-      setTimeout(() => animateFeatherWriting('0.02s', 25, 0), 3500);
-      setTimeout(() => moveFeathertoNextLine(0), 4100);
-      setTimeout(() => laydownfeather(), 5000);
-      setTimeout(() => enableFeatherMovement(), 5500);
+      setTimeout(() => moveFeathertoNextLine(10), 900);
+      setTimeout(() => animateFeatherWriting('1s', 1, 0), 2000);
+      setTimeout(() => moveFeathertoNextLine(20), 2500);
+      setTimeout(() => animateFeatherWriting('7s', 2.5, 20), 3100);
+      setTimeout(() => moveFeathertoNextLine(0), 4500);
+      setTimeout(() => laydownfeather(), 5500);
+      setTimeout(() => enableFeatherMovement(), 6000);
       fadeInStoneBrightness();
       setTimeout(updateWelcomeMessage, 2500);
       const logoutButton = document.getElementById('logoutButton')
@@ -52,9 +52,8 @@ async function loginUser(username, password) {
       const paperMessage = document.querySelector('.paperMessage');
       paperMessage.innerHTML = '';
       setTimeout(async () => {
-        await showPaperMessage(paperMessage, `${result.user.username}`, 1000);
-        await appendDelayedMessage(paperMessage, "logged in successfully!", 1500);
-        setTimeout(() => fadeOut(document.querySelector('.paperMessage')), 2500);
+        await showPaperMessage(paperMessage, `${result.user.username}`, 500);
+        await appendDelayedMessage(paperMessage, "logged in successfully!", 1000);
         setTimeout(flipCover, 3000);
         setTimeout(flipLogin, 3500);
         setTimeout(flipToUserPage, 4000);
@@ -74,11 +73,19 @@ async function loginUser(username, password) {
     // Update UI with error message
     const paperMessage = document.querySelector('.paperMessage');
     paperMessage.innerHTML = '';
-    // animateFeatherWriting();
+    disableFeatherMovement();
+      dipinink()
+      setTimeout(() => moveFeathertoNextLine(10), 900);
+      setTimeout(() => animateFeatherWriting('1s', 1.5, 0), 2000);
+      setTimeout(() => moveFeathertoNextLine(22), 2500);
+      setTimeout(() => animateFeatherWriting('7s', 2.5, 20), 3100);
+      setTimeout(() => moveFeathertoNextLine(0), 4500);
+      setTimeout(() => laydownfeather(), 5500);
+      setTimeout(() => enableFeatherMovement(), 6000);
     setTimeout(async () => {
       await showPaperMessage(paperMessage, "Login Error", 500);
       await appendDelayedMessage(paperMessage, " Incorrect information", 1000);
-    }, 2000);
+    }, 2100);
   }
 }
 

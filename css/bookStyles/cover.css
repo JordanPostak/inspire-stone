@@ -1,3 +1,5 @@
+@import url('../cssAnimations/animations.css');
+
 .cover::before {
     display: block;
     content: "";
@@ -55,7 +57,8 @@
   }
   .cover button:hover {
     color: #321a00;
-    background-color: rgba(253, 227, 163, 0.7);
+    background-color: rgba(250, 224, 190, 0.816);
+    box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.816);
   }
   .cover button {
     font-size: 2rem;
@@ -68,5 +71,5 @@
     opacity: 0;
     cursor: pointer;
     display: block;
-    transition: color .5s, background-color 2s;
+    transition: color .5s, background-color 2s, box-shadow 1s;
   }

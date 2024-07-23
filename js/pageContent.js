@@ -20,7 +20,7 @@ async function fetchAndDisplayContent(step, pageId) {
       // Check if userId is available
       if (userId) {
         // Update the URL to include userId and step
-        const url = `https://seerstoneapi.onrender.com/inspirations/user_id/${userId}/step/${step}`;
+        const url = `https://seerstoneapi.onrender.com/inspirations/user_id/${userId}`;
         console.log(`Fetching from URL: ${url}`);
   
         try {
@@ -46,7 +46,7 @@ async function fetchAndDisplayContent(step, pageId) {
           
           // Simplified display: list all IDs
           if (Array.isArray(data) && data.length > 0) {
-            contentDiv.innerHTML = data.map(item => `<p>ID: ${item._id}</p>`).join('');
+            contentDiv.innerHTML = data.map(item => `<p>name: ${item.name}</p>`).join('');
           } else {
             contentDiv.innerHTML = '<p>No data found</p>';
           }
@@ -68,5 +68,5 @@ async function fetchAndDisplayContent(step, pageId) {
       fetchAndDisplayContent(step, pageId);
     });
   }
-
-export { fetchAndDisplayContent, fetchAllPagesContent };
+  
+  export { fetchAndDisplayContent, fetchAllPagesContent };

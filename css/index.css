@@ -14,7 +14,7 @@
 }
 body {
   background-image: url("../images/wooden-table.png");
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: repeat;
   height: 100vh;
   margin: 0;
@@ -27,7 +27,7 @@ body {
 }
 
 /* Styles for small screens */
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
   .quotes {
     top: 110px;
     left: 0%;
@@ -43,16 +43,10 @@ body {
     top: 390px;
     left: 0vw;
     z-index: 2;
-    /* rotate: 270deg; */
+    rotate: 270deg;
   }
   header {
     right: -5px;
-  }
-  .paper {
-    position: relative;
-    top: 25vh;
-    right: 0vh;
-    rotate: 15deg;
   }
   #cover,
   #login,
@@ -73,11 +67,6 @@ body {
   .candle {
     left: 0;
   }
-  .paper {
-    position: absolute;
-    margin-top: 420px;
-    margin-left: 350px;
-  }
 
   p.userNotFound {
     font-size: 2.3rem;
@@ -86,4 +75,4 @@ body {
     padding: 6rem 3rem;
     color: #180d04ac;
   }
-}
+} */
