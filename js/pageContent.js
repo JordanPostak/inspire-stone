@@ -20,7 +20,7 @@ async function fetchAndDisplayContent(step, pageId) {
       // Check if userId is available
       if (userId) {
         // Update the URL to include userId and step
-        const url = `https://seerstoneapi.onrender.com/inspirations/user_id/${userId}`;
+        const url = `https://seerstoneapi.onrender.com/inspirations`;
         console.log(`Fetching from URL: ${url}`);
   
         try {
